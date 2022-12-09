@@ -5,28 +5,6 @@
     fetch("https://field-mini-lyric.glitch.me/movies")
         .then(resp => resp.json())
         .then(data => console.log(data)); // get all
-    // fetch("https://vast-organic-farm.glitch.me/movies/3")
-    // .then(resp => resp.json())
-    // .then(data => console.log(data)); // get one
-
-    // HOW TO POST
-//     let newMovie = {
-//         const: newMovie = {
-//             title: ${#add-movie-title},
-//             rating: ${#add-rating}
-//         };
-//         fetch("https://field-mini-lyric.glitch.me/movies", {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify
-//     (newMovie),
-// }).
-//     then(() => fetch("https://field-mini-lyric.glitch.me/movies"))
-//         .then(resp => resp.json())
-//         .then(movies => console.log(movies));
-// }
 
     ////Add Movie Form////
     let addMovieForm = document.querySelector('#add-movie');
@@ -51,6 +29,28 @@
             .then(movies => console.log(movies));
 
     })
+
+
+// HOW TO POST
+//     let newMovie = {
+//         const: newMovie = {
+//             title: ${#add-movie-title},
+//             rating: ${#add-rating}
+//         };
+//         fetch("https://field-mini-lyric.glitch.me/movies", {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify
+//     (newMovie),
+// }).
+//     then(() => fetch("https://field-mini-lyric.glitch.me/movies"))
+//         .then(resp => resp.json())
+//         .then(movies => console.log(movies));
+// }
+
+
 
     ////Edit Movie Form////
 
@@ -177,4 +177,9 @@
     // }).then(() => fetch("https://field-mini-lyric.glitch.me/movies")).then(resp => resp.json()).then(movies => console.log(movies));
 
 
+
+
+// fetch("https://vast-organic-farm.glitch.me/movies/3")
+    // .then(resp => resp.json())
+    // .then(data => console.log(data)); // get one
 })();
