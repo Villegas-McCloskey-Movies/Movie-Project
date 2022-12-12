@@ -1,6 +1,6 @@
 "use strict";
 
-(()=>{
+(() => {
 // HOW TO GET
     fetch("https://field-mini-lyric.glitch.me/movies")
         .then(resp => resp.json())
@@ -9,7 +9,7 @@
     ////Add Movie Form////
     let addMovieForm = document.querySelector('#add-movie');
 
-    addMovieForm.addEventListener("submit", (e) =>{
+    addMovieForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const newMovie = {
             title: document.getElementById('add-movie-title').value,
@@ -23,8 +23,7 @@
             },
             body: JSON.stringify
             (newMovie),
-        }).
-        then(() => fetch("https://field-mini-lyric.glitch.me/movies"))
+        }).then(() => fetch("https://field-mini-lyric.glitch.me/movies"))
             .then(resp => resp.json())
             .then(movies => console.log(movies));
 
@@ -51,12 +50,11 @@
 // }
 
 
-
     ////Edit Movie Form////
 
     let editMovieForm = document.querySelector('#edit-movie');
 
-    editMovieForm.addEventListener("submit", (e) =>{
+    editMovieForm.addEventListener("submit", (e) => {
         e.preventDefault();
 
         const movieId = document.getElementById('movie-drop-down').value;
@@ -72,16 +70,38 @@
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(editMovie)
-        }).then(() => fetch("https://field-mini-lyric.glitch.me/movies")).then(resp => resp.json()).then(movies => console.log(movies));
+        }).then(() => fetch("https://field-mini-lyric.glitch.me/movies"))
+            .then(resp => resp.json())
+            .then(movies => console.log(movies));
 
     })
 
 
     // HOW TO DELETE
-    // fetch("https://field-mini-lyric.glitch.me/movies/7", {
-    //     method: "DELETE"
-    // }).then(() => fetch("https://field-mini-lyric.glitch.me/movies")).then(resp => resp.json()).then(movies => console.log(movies));
 
+    let deleteMovieForm = document.querySelector('#delete-movie');
+
+    editMovieForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const movieId = document.getElementById('delete-drop-down').value;
+        console.log(movieId);
+
+        const deleteMovie = {
+            rating: document.getElementById('edit-rating').value
+        };
+
+        fetch(`https://field-mini-lyric.glitch.me/movies/${movieId}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(deleteMovie)
+        }).then(() => fetch("https://field-mini-lyric.glitch.me/movies"))
+            .then(resp => resp.json())
+            .then(movies => console.log(movies));
+
+    })
 
 
     ////DropDown Code
@@ -99,7 +119,7 @@
 
     fetch(url)
         .then(
-            function(response) {
+            function (response) {
                 if (response.status !== 200) {
                     console.warn('Looks like there was a problem. Status Code: ' +
                         response.status);
@@ -107,7 +127,7 @@
                 }
 
                 // Examine the text in the response
-                response.json().then(function(data) {
+                response.json().then(function (data) {
                     let option;
                     // var dropselected = data[i].id
 
@@ -120,7 +140,7 @@
                 });
             }
         )
-        .catch(function(err) {
+        .catch(function (err) {
             console.error('Fetch Error -', err);
         });
 
@@ -130,14 +150,14 @@
 
     function copyTextValueTitle() {
         var dropId = document.getElementById("movie-drop-down").value;
-            fetch("https://vast-organic-farm.glitch.me/movies/" + dropId)
-            .then(resp => resp.json().then(function(data) {
+        fetch("https://vast-organic-farm.glitch.me/movies/" + dropId)
+            .then(resp => resp.json().then(function (data) {
                 document.getElementById("edit-movie-title").value = "";
                 document.getElementById("edit-rating").value = "";
                 document.getElementById("edit-movie-title").value = data.title;
                 document.getElementById("edit-rating").value = data.rating;
             }));
-            // .then(data => console.log(data); // get one
+        // .then(data => console.log(data); // get one
         // document.getElementById("edit-movie-title").value = json.title;
         // var text2 = document.getElementById("movie-drop-down").value;
         // document.getElementById("edit-rating").value = text2;
@@ -171,10 +191,6 @@
     //     },
     //     body: JSON.stringify(edittedMovie)
     // }).then(() => fetch("https://field-mini-lyric.glitch.me/movies")).then(resp => resp.json()).then(movies => console.log(movies));
-
-
-
-
 
 
 // fetch("https://vast-organic-farm.glitch.me/movies/3")
