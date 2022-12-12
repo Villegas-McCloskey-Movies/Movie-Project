@@ -50,9 +50,9 @@
 // }
 
 
-    ////Edit Movie Form////
+    ////Edit Movie Rating Form////
 
-    let editMovieForm = document.querySelector('#edit-movie');
+    let editMovieForm = document.querySelector('#edit-movie-rating');
 
     editMovieForm.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -106,7 +106,7 @@
 
     ////DropDown Code
 
-    let dropdown = document.getElementById('movie-drop-down');
+    let dropdown = document.getElementsByClassName('movieTitleDropdown');
     dropdown.length = 0;
 
     let defaultOption = document.createElement('option');
