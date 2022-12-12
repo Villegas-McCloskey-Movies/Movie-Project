@@ -29,14 +29,31 @@
 <hr>
 <br>
 <br>
-<!--Edit Movie Form-->
-<form id="edit-movie">
+<!--Edit Movie Title Form-->
+<form id="edit-movie-title">
     <div class="input-group mb-3">
-        <input id="edit-movie-title" type="text" class="form-control" placeholder="Edit Movie Title"
+        <input id="editMovieTitle" type="text" class="form-control" placeholder="Edit Movie Title"
                aria-label="Recipient's username"
                aria-describedby="basic-addon2">
         <!--        <span class="input-group-text" id="basic-addon3">Edit Movie Title</span>-->
     </div>
+    <select id="movie-drop-down-list" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+    </select>
+    <select id="edit-title" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+        <option selected>Edit Rating for This Movie</option>
+        <option value="1">One Star</option>
+        <option value="2">Two Stars</option>
+        <option value="3">Three Stars</option>
+        <option value="4">Four Stars</option>
+        <option value="5">Five Stars</option>
+    </select>
+    <button id="editButton" class="btn btn-primary" type="submit">Edit</button>
+</form>
+<hr>
+<br>
+<br>
+<!--Edit Movie Rating Form-->
+<form id="edit-movie-rating">
     <select id="movie-drop-down" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
     </select>
     <select id="edit-rating" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
