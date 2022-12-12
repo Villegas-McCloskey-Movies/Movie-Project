@@ -58,12 +58,16 @@
 
     editMovieForm.addEventListener("submit", (e) =>{
         e.preventDefault();
+
+        const movieId = document.getElementById('movie-drop-down').value;
+        console.log(movieId);
+
         const editMovie = {
             title: document.getElementById('edit-movie-title').value,
             rating: document.getElementById('edit-rating').value
         };
 
-        fetch(`https://field-mini-lyric.glitch.me/movies/${dropSelected}`, {
+        fetch(`https://field-mini-lyric.glitch.me/movies/${movieId}`, {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json'
@@ -71,13 +75,9 @@
             body: JSON.stringify(editMovie)
         }).then(() => fetch("https://field-mini-lyric.glitch.me/movies")).then(resp => resp.json()).then(movies => console.log(movies));
 
-
-
     })
 
     ////DropDown Code
-
-    // var dropSelected = ""
 
     let dropdown = document.getElementById('movie-drop-down');
     dropdown.length = 0;
@@ -107,7 +107,7 @@
                     for (let i = 0; i < data.length; i++) {
                         option = document.createElement('option');
                         option.text = data[i].title;
-                        option.value = data[i].rating;
+                        option.value = data[i].id;
                         dropdown.add(option);
                     }
                 });
@@ -117,31 +117,25 @@
             console.error('Fetch Error -', err);
         });
 
-    // Listener for all
-    // dropdown.addEventListener('change', updateCoffees);
+    // Listener for Movie Title Select
+    var dropDownSelect = document.getElementById("movie-drop-down")
+    dropDownSelect.addEventListener('change', copyTextValueTitle);
 
-
-    //  Search Bar Code
-    // var searchInput = document.querySelector("[movie-search]")
-    //
-    // searchInput.addEventListener("input", searchInput => {
-    //     var searchResults = [];
-    //     // searchResults.innerHTML = "";
-    //     var value = searchInput.target.value.toLowerCase()
-    //     coffees.forEach(coffee => {
-    //         if (coffee.name.toLowerCase().indexOf(value.toLowerCase()) !== -1 || coffee.roast.toLowerCase().indexOf(value.toLowerCase()) !== -1){
-    //             searchResults.push(coffee);
-    //         }
-    //     });
-    //     tbody.innerHTML = renderCoffees(searchResults);
-    // })
-
-
-
-
-
-
-
+    function copyTextValueTitle() {
+        var dropId = document.getElementById("movie-drop-down").value;
+            fetch("https://vast-organic-farm.glitch.me/movies/" + dropId)
+            .then(resp => resp.json().then(function(data) {
+                document.getElementById("edit-movie-title").value = "";
+                document.getElementById("edit-rating").value = "";
+                document.getElementById("edit-movie-title").value = data.title;
+                document.getElementById("edit-rating").value = data.rating;
+            }));
+            // .then(data => console.log(data); // get one
+        // document.getElementById("edit-movie-title").value = json.title;
+        // var text2 = document.getElementById("movie-drop-down").value;
+        // document.getElementById("edit-rating").value = text2;
+        // console.log(text1);
+    }
 
     // HOW TO UPDATE
     // const complexMovie = {
