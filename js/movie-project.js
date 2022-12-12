@@ -10,82 +10,50 @@
     function loadMovies() {
         fetch("https://woolly-chambray-clef.glitch.me/movies")
             .then(resp => resp.json().then(function(data) {
-            var movies = data;
-            let movieCards = '';
-            for (let i = 0; i < movies.length; i ++) {
-                movieCards += '<div class="card" style="width: 18rem;">' +
+                var movies = data;
+                let movieCards = '';
+                for (let i = 0; i < movies.length; i ++) {
+                    movieCards += '<div class="card" style="width: 18rem;">' +
                         '<div class="card-body">' +
-                            '<h5 class="card-title">' + movies[i].id + '</h5>' +
-                            '<h6 class="card-subtitle mb-2 text-muted">' + movies[i].title + '</h6>' +
-                            '<p class="card-text">' + movies[i].rating + '</p>' +
-                            '<a href="#" class="card-link"> + Link + </a>' +
-                            '<a href="#" class="card-link"> + Link or Button + </a>' +
-                       ' </div>' +
-                    '</div>'
-            }
-            $('#movie-cards').html(movieCards);
-        }))
+                        '<h5 class="card-title">' + movies[i].id + '</h5>' +
+                        '<h6 class="card-subtitle mb-2 text-muted">' + movies[i].title + '</h6>' +
+                        '<p class="card-text">' + movies[i].rating + '</p>' +
+                        '<button id="edit-button" class="btn btn-primary"> Edit </button>' +
+                        '<button class="deleteButton btn btn-primary" data-id="' + movies[i].id +'"> Delete </button>' +
+                        ' </div>' +
+                        '</div>'
+                }
+                $('#movie-cards').html(movieCards);
+            }))
     }
 
     loadMovies();
 
-    //// Add Movie Function ////
+    ////Add Movie Form////
+    let addMovieForm = document.querySelector('#add-movie');
 
-    function addMovieFunction() {
-        fetch("https://woolly-chambray-clef.glitch.me/movies")
-            .then(resp => resp.json().then(function(data) {
-                console.log(data);
-                let id = data.length + 1;
-                const newMovie = {
-                    id: id,
-                    title: document.getElementById('add-movie-title').value,
-                    rating: document.getElementById('add-rating').value
-                };
+    addMovieForm.addEventListener("submit", (e) =>{
+        e.preventDefault();
+        const newMovie = {
+            title: document.getElementById('add-movie-title').value,
+            rating: document.getElementById('add-rating').value
+        };
 
-                fetch("https://woolly-chambray-clef.glitch.me/movies", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify
-                    (newMovie),
-                }).
-                then(() => fetch("https://woolly-chambray-clef.glitch.me/movies"))
-                    .then(resp => resp.json())
-                    .then(movies => console.log(movies));
-            }));
-    }
+        fetch("https://woolly-chambray-clef.glitch.me/movies", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify
+            (newMovie),
+        }).
+        then(() => fetch("https://woolly-chambray-clef.glitch.me/movies"))
+            .then(resp => resp.json())
+            .then(movies => console.log(movies));
 
-    // addMovieFunction()
+    })
 
-    let addMovieForm = document.querySelector('#add-button');
-    addMovieForm.addEventListener("submit", addMovieFunction)
-
-
-// =>{
-    //     // addMovieFunction.preventDefault();
-    //     // const newMovie = {
-    //     //     id: "https://woolly-chambray-clef.glitch.me/movies/".array.length + 1,
-    //     //     title: document.getElementById('add-movie-title').value,
-    //     //     rating: document.getElementById('add-rating').value
-    //     // };
-    //     //
-    //     // fetch("https://woolly-chambray-clef.glitch.me/movies", {
-    //     //     method: 'POST',
-    //     //     headers: {
-    //     //         'Content-Type': 'application/json',
-    //     //     },
-    //     //     body: JSON.stringify
-    //     //     (newMovie),
-    //     // }).
-    //     // then(() => fetch("https://woolly-chambray-clef.glitch.me/movies"))
-    //     //     .then(resp => resp.json())
-    //     //     .then(movies => console.log(movies));
-    //
-    // })
-
-
-    //// Edit Movie Form ////
+    ////Edit Movie Form////
 
     let editMovieForm = document.querySelector('#edit-movie');
 
@@ -107,7 +75,7 @@
             },
             body: JSON.stringify(editMovie)
         }).then(() => fetch("https://woolly-chambray-clef.glitch.me/movies")).then(resp => resp.json()).then(movies => console.log(movies));
-loadMovies();
+        loadMovies();
     })
 
     //// DropDown Code ////
@@ -150,8 +118,7 @@ loadMovies();
             console.error('Fetch Error -', err);
         });
 
-    //// Listener for Movie Title Select ////
-
+    // Listener for Movie Title Select
     var dropDownSelect = document.getElementById("movie-drop-down")
     dropDownSelect.addEventListener('change', copyTextValueTitle);
 
@@ -159,9 +126,6 @@ loadMovies();
         var dropId = document.getElementById("movie-drop-down").value;
         fetch("https://woolly-chambray-clef.glitch.me/movies/" + dropId)
             .then(resp => resp.json().then(function(data) {
-                // document.getElementById("edit-movie-title").value = "";
-                // document.getElementById("edit-rating").value = "";
-                console.log(data);
                 document.getElementById("edit-movie-title").value = data.title;
                 document.getElementById("edit-rating").value = data.rating;
             }));
@@ -169,88 +133,44 @@ loadMovies();
 
 
 
-// HOW TO DELETE
+    //// HOW TO DELETE////
 
-    let deleteMovieForm = document.querySelector('#delete-button');
+    // let deleteMovieForm = document.querySelector('.deleteButton');
 
-    deleteMovieForm.addEventListener("submit", (e) => {
-        e.preventDefault();
+    $( ".deleteButton" ).click(function() {
+        let dataId = $(this).attr("data-id");
+        // let dataId = $(this).data("id");
+        console.log(dataId);
+    });
 
-        const deleteId = document.getElementById('movie-drop-down').value;
-        console.log(deleteId);
 
+
+    // deleteMovieForm.addEventListener("submit", (e) => {
+    //     e.preventDefault();
+
+        // const buttonAttribute = $('.deleteButton').attr('data-id="' + movies[i].id +' "')
+        // console.log(buttonAttribute);
+        //
+        // const movieId = document.getElementById('delete-drop-down').value;
+        // console.log(movieId);
+        //
         // const deleteMovie = {
         //     rating: document.getElementById('edit-rating').value
         // };
+        //
+        // fetch(`https://woolly-chambray-clef.glitch.me/movies/${movieId}`, {
+        //     method: "DELETE",
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(deleteMovie)
+        // }).then(() => fetch("https://woolly-chambray-clef.glitch.me/movies"))
+        //     .then(resp => resp.json())
+        //     .then(movies => console.log(movies));
 
-        fetch(`https://woolly-chambray-clef.glitch.me/movies/${deleteId}`, {
-            method: "DELETE"
-        }).then(() => fetch("https://woolly-chambray-clef.glitch.me/movies"))
-            .then(resp => resp.json())
-            .then(movies => console.log(movies));
-
-    })
+    // })
 
 
-
-    // HOW TO UPDATE
-    // const complexMovie = {
-    //     title: "Be Kind Rewind",
-    //     director: "Michael Gondry",
-    //     release_date: 2008,
-    //     cast: ["Yasiin Bey", "Jack Black", "Danny Glover"]
-    // };
-    //
-    // const edittedMovie = {
-    //     title: "The Never-Ending Story"
-    // }
-    //
-    // fetch("https://thirsty-woolly-chambray-clef.me/movies/7", {
-    //     method: "PUT",
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(edittedMovie)
-    // }).then(() => fetch("https://woolly-chambray-clef.glitch.me/movies")).then(resp => resp.json()).then(movies => console.log(movies));
-
-    // fetch("https://thirsty-woolly-chambray-clef.me/movies/7", {
-    //     method: "PATCH",
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(edittedMovie)
-    // }).then(() => fetch("https://woolly-chambray-clef.glitch.me/movies")).then(resp => resp.json()).then(movies => console.log(movies));
-
-    // HOW TO DELETE
-    // fetch("https://woolly-chambray-clef.glitch.me/movies/7", {
-    //     method: "DELETE"
-    // }).then(() => fetch("https://woolly-chambray-clef.glitch.me/movies")).then(resp => resp.json()).then(movies => console.log(movies));
 
 
 })();
-
-
-
-// fetch("https://woolly-chambray-clef.glitch.me/movies/3")
-// .then(resp => resp.json())
-// .then(data => console.log(data)); // get one
-
-// HOW TO POST
-//     let newMovie = {
-//         const: newMovie = {
-//             title: ${#add-movie-title},
-//             rating: ${#add-rating}
-//         };
-//         fetch("https://woolly-chambray-clef.glitch.me/movies", {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify
-//     (newMovie),
-// }).
-//     then(() => fetch("https://woolly-chambray-clef.glitch.me/movies"))
-//         .then(resp => resp.json())
-//         .then(movies => console.log(movies));
-// }
-
