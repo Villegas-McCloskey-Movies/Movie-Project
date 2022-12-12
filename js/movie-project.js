@@ -63,7 +63,6 @@
         console.log(movieId);
 
         const editMovie = {
-            title: document.getElementById('edit-movie-title').value,
             rating: document.getElementById('edit-rating').value
         };
 
@@ -76,6 +75,14 @@
         }).then(() => fetch("https://field-mini-lyric.glitch.me/movies")).then(resp => resp.json()).then(movies => console.log(movies));
 
     })
+
+
+    // HOW TO DELETE
+    // fetch("https://field-mini-lyric.glitch.me/movies/7", {
+    //     method: "DELETE"
+    // }).then(() => fetch("https://field-mini-lyric.glitch.me/movies")).then(resp => resp.json()).then(movies => console.log(movies));
+
+
 
     ////DropDown Code
 
@@ -165,10 +172,7 @@
     //     body: JSON.stringify(edittedMovie)
     // }).then(() => fetch("https://field-mini-lyric.glitch.me/movies")).then(resp => resp.json()).then(movies => console.log(movies));
 
-    // HOW TO DELETE
-    // fetch("https://field-mini-lyric.glitch.me/movies/7", {
-    //     method: "DELETE"
-    // }).then(() => fetch("https://field-mini-lyric.glitch.me/movies")).then(resp => resp.json()).then(movies => console.log(movies));
+
 
 
 
