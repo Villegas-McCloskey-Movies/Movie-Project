@@ -1,6 +1,7 @@
 "use strict";
 
 (()=>{
+    var fetchAllURL = "https://woolly-chambray-clef.glitch.me/movies"
 // HOW TO GET
     fetch("https://woolly-chambray-clef.glitch.me/movies")
         .then(resp => resp.json())
@@ -8,7 +9,7 @@
 
 
     function loadMovies() {
-        fetch("https://woolly-chambray-clef.glitch.me/movies")
+        fetch(fetchAllURL)
             .then(resp => resp.json().then(function(data) {
                 var movies = data;
                 let movieCards = '';
@@ -40,7 +41,7 @@
             rating: document.getElementById('add-rating').value
         };
 
-        fetch("https://woolly-chambray-clef.glitch.me/movies", {
+        fetch(fetchAllURL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -48,7 +49,7 @@
             body: JSON.stringify
             (newMovie),
         }).
-        then(() => fetch("https://woolly-chambray-clef.glitch.me/movies"))
+        then(() => fetch(fetchAllURL))
             .then(resp => resp.json())
             .then(loadMovies);
     });
@@ -81,7 +82,7 @@
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(editMovie)
-        }).then(() => fetch("https://woolly-chambray-clef.glitch.me/movies")).then(resp => resp.json()).then(loadMovies);
+        }).then(() => fetch(fetchAllURL)).then(resp => resp.json()).then(loadMovies);
         alert("Changes Made to Movie.");
         // }).then(() => fetch("https://woolly-chambray-clef.glitch.me/movies")).then(resp => resp.json()).then(movies =>  loadMovies());
         // alert("Changes Made to Movie.");
@@ -102,15 +103,12 @@
 
     //// HOW TO DELETE////
 
-    // let deleteMovieForm = document.querySelector('.deleteButton');
-
     $(document).on('click','.deleteButton',function(){
         let dataId = $(this).attr("data-id");
         console.log(dataId);
-
         fetch(`https://woolly-chambray-clef.glitch.me/movies/${dataId}`, {
             method: "DELETE",
-        }).then(() => fetch("https://woolly-chambray-clef.glitch.me/movies"))
+        }).then(() => fetch(fetchAllURL))
             .then(resp => resp.json())
             .then(loadMovies);
     });
