@@ -1,11 +1,46 @@
 "use strict";
 
 (()=>{
+    //// Load ////
+    // https://stackoverflow.com/questions/25253391/javascript-loading-screen-while-page-loads
+    // const wait = (delay = 0) =>
+    //     new Promise(resolve => setTimeout(resolve, delay));
+    //
+    // const setVisible = (elementOrSelector, visible) =>
+    //     (typeof elementOrSelector === 'string'
+    //             ? document.querySelector("body")
+    //             : elementOrSelector
+    //     ).style.display = visible ? 'block' : 'none';
+    //
+    // setVisible('#edit-movie', false);
+    // setVisible('#loading', true);
+    //
+    // document.addEventListener('DOMContentLoaded', () =>
+    //     wait(1000).then(() => {
+    //         setVisible('#edit-movie', true);
+    //         setVisible('#loading', false);
+    //     }));
+
+    // document.addEventListener('DOMContentLoaded', () =>
+    //     wait(1000).then(() => {
+    //         document.getElementById("page").style.display = "block";
+    //         document.getElementById("loading").style.display = "none";
+    //     }));
+
+    // function loadWait()
+    // {
+    //     document.getElementById("page").style.display = "block";
+    //     document.getElementById("loading").style.display = "none";
+    // }
+    // document.onload = loadWait();
+
+
     var fetchAllURL = "https://woolly-chambray-clef.glitch.me/movies"
 // HOW TO GET
     fetch("https://woolly-chambray-clef.glitch.me/movies")
         .then(resp => resp.json())
-        .then(data => console.log(data)); // get all
+        .then(data => console.log(data))
+        .catch(error => console.error(error)); // get all
 
 
     function loadMovies() {
@@ -26,6 +61,7 @@
                 }
                 $('#movie-cards').html(movieCards);
             }))
+            .catch(error => console.error(error));
     }
 
     loadMovies();
@@ -51,7 +87,8 @@
         }).
         then(() => fetch(fetchAllURL))
             .then(resp => resp.json())
-            .then(loadMovies);
+            .then(loadMovies)
+            .catch(error => console.error(error));
     });
 
     //// Edit Movie Form ////
@@ -82,7 +119,7 @@
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(editMovie)
-        }).then(() => fetch(fetchAllURL)).then(resp => resp.json()).then(loadMovies);
+        }).then(() => fetch(fetchAllURL)).then(resp => resp.json()).then(loadMovies).catch(error => console.error(error));
         alert("Changes Made to Movie.");
         // }).then(() => fetch("https://woolly-chambray-clef.glitch.me/movies")).then(resp => resp.json()).then(movies =>  loadMovies());
         // alert("Changes Made to Movie.");
@@ -97,7 +134,7 @@
                 document.getElementById("edit-movie-title").value = data.title;
                 document.getElementById("edit-rating").value = data.rating;
                 document.getElementById("cardId").value = cardId;
-            }));
+            })).catch(error => console.error(error));
         loadMovies();
     }
 
@@ -110,7 +147,7 @@
             method: "DELETE",
         }).then(() => fetch(fetchAllURL))
             .then(resp => resp.json())
-            .then(loadMovies);
+            .then(loadMovies).catch(error => console.error(error));
     });
 
 })();
