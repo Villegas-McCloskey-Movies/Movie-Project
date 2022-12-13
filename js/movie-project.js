@@ -18,8 +18,8 @@
                         '<h5 class="card-title">' + movies[i].id + '</h5>' +
                         '<h6 class="card-subtitle mb-2 text-muted">' + movies[i].title + '</h6>' +
                         '<p class="card-text">' + movies[i].rating + '</p>' +
-                        '<button id="edit-button" class="btn btn-primary"> Edit </button>' +
-                        '<button class="deleteButton btn btn-primary" data-id="' + movies[i].id +'"> Delete </button>' +
+                        '<button id="edit-button" class="edit-button btn btn-primary" data-id="' + movies[i].id +'"> Edit </button>' +
+                        '<button id="deleteB" class="deleteButton btn btn-primary" data-id="' + movies[i].id +'"> Delete </button>' +
                         ' </div>' +
                         '</div>'
                 }
@@ -50,6 +50,8 @@
         then(() => fetch("https://woolly-chambray-clef.glitch.me/movies"))
             .then(resp => resp.json())
             .then(movies => console.log(movies));
+
+        loadMovies()
 
     })
 
@@ -137,38 +139,18 @@
 
     // let deleteMovieForm = document.querySelector('.deleteButton');
 
-    $( ".deleteButton" ).click(function() {
+    $(document).on('click','.deleteButton',function(){
         let dataId = $(this).attr("data-id");
-        // let dataId = $(this).data("id");
         console.log(dataId);
+
+        fetch(`https://woolly-chambray-clef.glitch.me/movies/${dataId}`, {
+            method: "DELETE",
+        }).then(() => fetch("https://woolly-chambray-clef.glitch.me/movies"))
+            .then(resp => resp.json())
+            .then(movies => console.log(movies));
+        loadMovies();
     });
 
-
-
-    // deleteMovieForm.addEventListener("submit", (e) => {
-    //     e.preventDefault();
-
-        // const buttonAttribute = $('.deleteButton').attr('data-id="' + movies[i].id +' "')
-        // console.log(buttonAttribute);
-        //
-        // const movieId = document.getElementById('delete-drop-down').value;
-        // console.log(movieId);
-        //
-        // const deleteMovie = {
-        //     rating: document.getElementById('edit-rating').value
-        // };
-        //
-        // fetch(`https://woolly-chambray-clef.glitch.me/movies/${movieId}`, {
-        //     method: "DELETE",
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(deleteMovie)
-        // }).then(() => fetch("https://woolly-chambray-clef.glitch.me/movies"))
-        //     .then(resp => resp.json())
-        //     .then(movies => console.log(movies));
-
-    // })
 
 
 
