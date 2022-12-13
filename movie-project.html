@@ -13,11 +13,11 @@
         <label for="add-movie-title">Add a movie to the list.</label>
         <input id="add-movie-title" type="text" class="form-control" placeholder="Add Movie Title Here"
                aria-label="Recipient's username"
-               aria-describedby="basic-addon2">
+               aria-describedby="basic-addon2" required>
         <!--        <span class="input-group-text" id="basic-addon2">Input Movie Title</span>-->
     </div>
-    <select id="add-rating" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-        <option selected>Rate This Movie</option>
+    <select id="add-rating" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
+<!--        <option selected>Rate This Movie</option>-->
         <option value="1">One Star</option>
         <option value="2">Two Stars</option>
         <option value="3">Three Stars</option>
@@ -35,47 +35,29 @@
     <div class="input-group mb-3">
         <input id="edit-movie-title" type="text" class="form-control" placeholder="Edit Movie Title"
                aria-label="Recipient's username"
-               aria-describedby="basic-addon2">
+               aria-describedby="basic-addon2" required>
+        <input id="cardId" type="text" class="form-control" placeholder="Hidden in Class"
+               aria-label="cardId"
+               aria-describedby="basic-addon2" required>
     </div>
-    <!--    <select id="movie-drop-down-list" class="movieTitleDropdown form-select form-select-lg mb-3" aria-label=".form-select-lg example">-->
-    <!--    </select>-->
-    <!--    <select id="edit-title" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">-->
-    <!--        <option selected>Edit title for this movie</option>-->
-    <!--    </select>-->
-    <!--    <button id="editButton" class="btn btn-primary" type="submit">Edit</button>-->
 </form>
-<!--<hr>-->
-<!--<br>-->
-<!--<br>-->
+<hr>
 <!--Edit Movie Rating Form-->
 <form id="edit-movie-rating">
-    <select id="movie-drop-down" class="movieTitleDropdown form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-    </select>
-    <select id="edit-rating" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-        <option selected>Edit Rating for This Movie</option>
+
+    <select id="edit-rating" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
+<!--        <option selected>Edit Rating for This Movie</option>-->
         <option value="1">One Star</option>
         <option value="2">Two Stars</option>
         <option value="3">Three Stars</option>
         <option value="4">Four Stars</option>
         <option value="5">Five Stars</option>
     </select>
-    <button id="edit-button" class="btn btn-primary" type="submit">Edit</button>
+    <button id="edit-b" class="btn btn-primary" type="submit">Submit Edit</button>
 </form>
 <hr>
 <br>
 <br>
-<!--Delete Movie Form-->
-<!--<form id="delete-movie">-->
-<!--    <div class="input-group mb-3">-->
-<!--        <input id="delete-movie-title" type="text" class="form-control" placeholder="Delete Movie Title"-->
-<!--               aria-label="Recipient's username"-->
-<!--               aria-describedby="basic-addon2">-->
-<!--        &lt;!&ndash;        <span class="input-group-text" id="basic-addon3">Edit Movie Title</span>&ndash;&gt;-->
-<!--    </div>-->
-<!--    <select id="delete-drop-down" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">-->
-<!--    </select>-->
-<!--    <button id="delete-button" class="classDeleteButton btn btn-primary" type="submit">Delete</button>-->
-<!--</form>-->
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
