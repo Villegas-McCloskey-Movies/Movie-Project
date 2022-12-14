@@ -4,8 +4,11 @@
 
 (()=>{
     $(window).on("load", function() {
-        $('#loading').hide()
+        $('#loading').hide();
     });
+
+    //delete this
+
     var fetchAllURL = "https://woolly-chambray-clef.glitch.me/movies"
 // HOW TO GET
     fetch("https://woolly-chambray-clef.glitch.me/movies")
