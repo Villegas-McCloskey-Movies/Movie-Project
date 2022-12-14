@@ -2,10 +2,31 @@ body {
     background-image: url("/img/dusk.jpg");
 }
 
-#page {
-    display: none;
-    padding: 0 0.5em;
+/*#page {*/
+/*    display: none;*/
+/*    padding: 0 0.5em;*/
+/*}*/
+
+.hidden {
+    visibility: hidden;
+
+    /*position: absolute;*/
+    /*width: 80%;*/
+    /*height: 50%;*/
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*transform: translate(-50%, -50%);*/
+    /*border: 2px solid white;*/
+    /*border-radius: 10px;*/
+    /*padding: 10px;*/
+
+    /*background-color: white;*/
+    /*box-shadow: 4px 2px 15px 0 rgba(0,0,0,0.3);*/
 }
+
+/*.visible {*/
+/*    visibility: visible;*/
+/*}*/
 
 #loading {
     display: block;

@@ -7,9 +7,9 @@
         $('#loading').hide();
     });
 
-    //delete this
 
     var fetchAllURL = "https://woolly-chambray-clef.glitch.me/movies"
+
 // HOW TO GET
     fetch("https://woolly-chambray-clef.glitch.me/movies")
         .then(resp => resp.json())
@@ -38,7 +38,12 @@
     }
     loadMovies();
 
-    ////Add Movie Form////
+    //// Toggle for Edit Form ////
+    $(document).on('click','.edit-button',function(){
+        $("#edit-movie").toggleClass("hidden");
+    });
+
+        ////Add Movie Form////
     let addMovieForm = document.querySelector('#add-movie');
     addMovieForm.addEventListener("submit", (e) =>{
         e.preventDefault();
@@ -57,6 +62,7 @@
         then(() => fetch(fetchAllURL))
             .then(resp => resp.json())
             .then(loadMovies)
+            .then($('#add-movie')[0].reset())
             .catch(error => console.error(error));
     });
 
@@ -77,8 +83,13 @@
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(editMovie)
-        }).then(() => fetch(fetchAllURL)).then(resp => resp.json()).then(loadMovies).catch(error => console.error(error));
+        }).then(() => fetch(fetchAllURL)).then(resp => resp.json()).then(loadMovies).then($('#add-movie')[0].reset()).catch(error => console.error(error));
         alert("Changes Made to Movie.");
+    });
+
+    //// Toggle for Edit Form ////
+    $(document).on('click','#edit-b',function(){
+        $("#edit-movie").toggleClass("hidden");
     });
 
     //// Pre-fill Form Code ////
