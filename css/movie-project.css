@@ -2,6 +2,14 @@ body {
     background-image: url("/img/dusk.jpg");
 }
 
+hr {
+    border: 3px solid #000000;
+}
+
+h1 {
+    color: khaki;
+}
+
 /*#page {*/
 /*    display: none;*/
 /*    padding: 0 0.5em;*/
@@ -38,7 +46,6 @@ body {
     background-image: url("/img/Camera_aperture.gif");
     background-repeat: no-repeat;
     background-position: center;
-
 }
 
 #movie-cards {
@@ -58,12 +65,20 @@ body {
     visibility: hidden;
 }
 
+.sticky-top {
+    background-color: #648381;
+}
+
 #cardId {
     visibility: hidden;
 }
 
 #add-movie-title {
     margin-left: 1em;
+}
+
+#edit-b {
+    justify-content: center;
 }
 
 /*#add-movie {*/
