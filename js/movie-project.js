@@ -1,12 +1,23 @@
 "use strict";
-// TODO: Clear the form after entering a new movie.
-// TODO: Remove alert after editting a movie without affecting the functionality.
 
 (()=>{
     $(window).on("load", function() {
         $('#loading').hide();
     });
 
+
+    // sort the movies
+    // function sortMovies(movies, sortKey) {
+    //     if (sortKey === "title") {
+    //         movies.sort(function(a, b) {
+    //             return a.title.localeCompare(b.title);
+    //         });
+    //     } else if (sortKey === "year") {
+    //         movies.sort(function(a, b) {
+    //             return a.year - b.year;
+    //         });
+    //     }
+    // }
 
     var fetchAllURL = "https://woolly-chambray-clef.glitch.me/movies"
 
@@ -16,8 +27,8 @@
         .then(data => console.log(data))
         .catch(error => console.error(error)); // get all
 
-    function loadMovies() {
-        fetch(fetchAllURL)
+    function loadMovies(movies) {
+        return fetch(fetchAllURL)
             .then(resp => resp.json().then(function(data) {
                 var movies = data;
                 let movieCards = '';
@@ -37,6 +48,24 @@
             .catch(error => console.error(error));
     }
     loadMovies();
+    //  Search Movies
+    var searchInput = document.querySelector("[data-search]")
+
+    searchInput.addEventListener("input", searchInput => {
+        var searchResults = [];
+        searchResults.innerHTML = "";
+        var value = searchInput.target.value.toLowerCase()
+        fetch("https://woolly-chambray-clef.glitch.me/movies")
+            .then(resp => resp.json())
+            .then(data => console.log(data))
+            .then(JSON.forEach (data => {
+            if (data.title.toLowerCase().indexOf(value.toLowerCase()) !== -1 || data.rating.toLowerCase().indexOf(value.toLowerCase()) !== -1){
+                searchResults.push(loadMovies());
+            }
+        }));
+        let tbody = document.getElementById("movie-cards");
+        tbody.innerHTML = loadMovies(searchResults);
+    })
 
     //// Toggle for Edit Form ////
     $(document).on('click','.edit-button',function(){
@@ -71,7 +100,8 @@
         let dataId = $(this).attr("data-id");
         copyTextValueTitle(dataId);
     });
-    $(document).on('click', '#edit-b', function(){
+    $(document).on('click', '#edit-b', function(e){
+        e.preventDefault();
         const editMovie = {
             id: parseFloat(document.getElementById('cardId').value),
             title: document.getElementById('edit-movie-title').value,
@@ -84,7 +114,6 @@
             },
             body: JSON.stringify(editMovie)
         }).then(() => fetch(fetchAllURL)).then(resp => resp.json()).then(loadMovies).then($('#add-movie')[0].reset()).catch(error => console.error(error));
-        alert("Changes Made to Movie.");
     });
 
     //// Toggle for Edit Form ////
