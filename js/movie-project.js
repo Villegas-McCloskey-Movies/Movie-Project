@@ -7,15 +7,46 @@
 
 
     // sort the movies
+    var sortSelect = document.querySelector("#sort-movie-title")
+sortSelect.addEventListener('change', function sortMovies() {
+    var selectResults = [];
+    var returnedResults = [];
+    var value = sortSelect.target.value.toLowerCase()
+        fetch("https://woolly-chambray-clef.glitch.me/movies")
+            .then(resp => resp.json())
+            .then(data => {
+                if (value === "title") {
+                            data.sort(function(a, b) {
+                                return a.title.localeCompare(b.title);
+                            });
+                        } else if (value === "rating") {
+                            data.sort(function(a, b) {
+                                return a.rating - b.rating;
+                            });
+                    }
+                selectResults.push(returnedResults);
+                })
+});
+    // sortSelect.addEventListener("change", function sortMovies(movies, sortKey) => {
+    //
+    //     data.forEach (movie => {
+    //             let movieCards = '';
+    //             for (let i = 0; i < searchResults.length; i ++) {
+    //                 movieCards += '<div class="card" style="width: 18rem;">' +
+    //                     '<div class="card-body">' +
+    //                     '<h5 class="card-title">' + searchResults[i].id + '</h5>' +
+    //                     '<h5 class="card-subtitle mb-2">' + searchResults[i].title + '</h5>' +
+    //                     '<p class="card-text">' + 'Rating: ' + searchResults[i].rating + '</p>' +
+    //                     '<button id="edit-button" class="edit-button btn btn-primary" data-id="' + searchResults[i].id +'"> Edit </button>' +
+    //                     '<button id="deleteB" class="deleteButton btn btn-primary" data-id="' + searchResults[i].id +'"> Delete </button>' +
+    //                     ' </div>' +
+    //                     '</div>'
+    //             }
+    //             $('#movie-cards').html(movieCards);
+    //         });
+    // })
     // function sortMovies(movies, sortKey) {
-    //     if (sortKey === "title") {
-    //         movies.sort(function(a, b) {
-    //             return a.title.localeCompare(b.title);
-    //         });
-    //     } else if (sortKey === "year") {
-    //         movies.sort(function(a, b) {
-    //             return a.year - b.year;
-    //         });
+    //
     //     }
     // }
 
@@ -51,20 +82,31 @@
     //  Search Movies
     var searchInput = document.querySelector("[data-search]")
 
-    searchInput.addEventListener("input", searchInput => {
+    searchInput.addEventListener("keyup", searchInput => {
         var searchResults = [];
-        searchResults.innerHTML = "";
         var value = searchInput.target.value.toLowerCase()
         fetch("https://woolly-chambray-clef.glitch.me/movies")
             .then(resp => resp.json())
-            .then(data => console.log(data))
-            .then(JSON.forEach (data => {
-            if (data.title.toLowerCase().indexOf(value.toLowerCase()) !== -1 || data.rating.toLowerCase().indexOf(value.toLowerCase()) !== -1){
-                searchResults.push(loadMovies());
+            .then(data => {
+                data.forEach (movie => {
+            if (movie.title.toLowerCase().indexOf(value.toLowerCase()) !== -1 ){
+                searchResults.push(movie);
             }
-        }));
-        let tbody = document.getElementById("movie-cards");
-        tbody.innerHTML = loadMovies(searchResults);
+        })
+                let movieCards = '';
+                for (let i = 0; i < searchResults.length; i ++) {
+                    movieCards += '<div class="card" style="width: 18rem;">' +
+                        '<div class="card-body">' +
+                        '<h5 class="card-title">' + searchResults[i].id + '</h5>' +
+                        '<h5 class="card-subtitle mb-2">' + searchResults[i].title + '</h5>' +
+                        '<p class="card-text">' + 'Rating: ' + searchResults[i].rating + '</p>' +
+                        '<button id="edit-button" class="edit-button btn btn-primary" data-id="' + searchResults[i].id +'"> Edit </button>' +
+                        '<button id="deleteB" class="deleteButton btn btn-primary" data-id="' + searchResults[i].id +'"> Delete </button>' +
+                        ' </div>' +
+                        '</div>'
+                }
+                $('#movie-cards').html(movieCards);
+            });
     })
 
     //// Toggle for Edit Form ////
