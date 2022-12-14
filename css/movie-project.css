@@ -1,0 +1,46 @@
+body {
+    background-image: url("/img/dusk.jpg");
+}
+
+#page {
+    display: none;
+    padding: 0 0.5em;
+}
+
+#loading {
+    display: block;
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(192, 192, 192, 0.5);
+    background-image: url("/img/Camera_aperture.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+#movie-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#deleteB {
+    margin-left: 10px;
+    padding-left: 10px;
+}
+
+.card-title {
+    visibility: hidden;
+}
+
+#cardId {
+    visibility: hidden;
+}
+
+#add-movie-title {
+    margin-left: 1em;
+}
