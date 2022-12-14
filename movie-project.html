@@ -12,55 +12,59 @@
 <h1 class="d-flex justify-content-center">Movie Project</h1>
 <!--Add Movie Form-->
 <section>
-    <div class="container d-flex justify-content-center">
-    <form id="add-movie">
-        <div class="input-group mb-3">
-            <label for="add-movie-title">Add a Movie</label>
-            <input id="add-movie-title" type="text" class="form-control" placeholder="Add Movie Title Here"
-                   aria-label="Recipient's username"
-                   aria-describedby="basic-addon2" required>
-            <!--        <span class="input-group-text" id="basic-addon2">Input Movie Title</span>-->
+    <div class="container d-flex">
+        <div class="row d-flex">
+            <div class="col-6 d-flex">
+                <form id="add-movie" class="d-flex flex-wrap">
+                    <div class="input-group mb-3">
+                        <label for="add-movie-title">Add a Movie</label>
+                        <input id="add-movie-title" type="text" class="form-control" placeholder="Add Movie Title Here"
+                               aria-label="Recipient's username"
+                               aria-describedby="basic-addon2" required>
+                        <!--        <span class="input-group-text" id="basic-addon2">Input Movie Title</span>-->
+                    </div>
+                    <select id="add-rating" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                            required>
+                        <!--        <option selected>Rate This Movie</option>-->
+                        <option value="1">One Star</option>
+                        <option value="2">Two Stars</option>
+                        <option value="3">Three Stars</option>
+                        <option value="4">Four Stars</option>
+                        <option value="5">Five Stars</option>
+                    </select>
+                    <button id="add-button" class="btn btn-primary" type="submit">Add</button>
+                </form>
+            </div>
+            <!--Edit Movie Title Form-->
+            <div class="col-6 d-flex">
+                <form id="edit-movie" class="d-flex flex-wrap hidden">
+                    <div class="input-group mb-3">
+                        <input id="edit-movie-title" type="text" class="form-control" placeholder="Edit Movie Title"
+                               aria-label="Recipient's username"
+                               aria-describedby="basic-addon2" required>
+                        <input id="cardId" type="text" class="form-control" placeholder="Hidden in Class"
+                               aria-label="cardId"
+                               aria-describedby="basic-addon2" required>
+                    </div>
+                    <!--Edit Movie Rating-->
+                    <select id="edit-rating" class="form-select form-select-lg mb-3"
+                            aria-label=".form-select-lg example"
+                            required>
+                        <!--        <option selected>Edit Rating for This Movie</option>-->
+                        <option value="1">One Star</option>
+                        <option value="2">Two Stars</option>
+                        <option value="3">Three Stars</option>
+                        <option value="4">Four Stars</option>
+                        <option value="5">Five Stars</option>
+                    </select>
+                    <button id="edit-b" class="btn btn-primary" type="submit">Submit Edit</button>
+                </form>
+            </div>
         </div>
-        <select id="add-rating" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
-    <!--        <option selected>Rate This Movie</option>-->
-            <option value="1">One Star</option>
-            <option value="2">Two Stars</option>
-            <option value="3">Three Stars</option>
-            <option value="4">Four Stars</option>
-            <option value="5">Five Stars</option>
-        </select>
-        <button id="add-button" class="btn btn-primary" type="submit">Add</button>
-    </form>
     </div>
 </section>
 <hr>
 <div id="movie-cards" class="d-flex"></div>
-<hr>
-<!--Edit Movie Title Form-->
-<section>
-    <div class="container d-flex">
-    <form id="edit-movie" class="hidden">
-        <div class="input-group mb-3">
-            <input id="edit-movie-title" type="text" class="form-control" placeholder="Edit Movie Title"
-                   aria-label="Recipient's username"
-                   aria-describedby="basic-addon2" required>
-            <input id="cardId" type="text" class="form-control" placeholder="Hidden in Class"
-                   aria-label="cardId"
-                   aria-describedby="basic-addon2" required>
-        </div>
-    <!--Edit Movie Rating-->
-        <select id="edit-rating" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
-    <!--        <option selected>Edit Rating for This Movie</option>-->
-            <option value="1">One Star</option>
-            <option value="2">Two Stars</option>
-            <option value="3">Three Stars</option>
-            <option value="4">Four Stars</option>
-            <option value="5">Five Stars</option>
-        </select>
-        <button id="edit-b" class="btn btn-primary" type="submit">Submit Edit</button>
-    </form>
-    </div>
-</section>
 <hr>
 <!--<div id="page"></div>-->
 <script src="js/keys.js"></script>
