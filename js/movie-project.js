@@ -28,7 +28,7 @@
                 '<p class="card-text">' + 'Rating: ' + data[i].rating + '</p>' +
                 '<button id="edit-button" class="edit-button btn btn-primary" data-id="' + data[i].id + '"> Edit </button>' +
                 '<button id="deleteB" class="deleteButton btn btn-primary" data-id="' + data[i].id + '"> Delete </button>' +
-                '<button id="OmdbButton" class="omdbButton btn btn-primary" data-id="' + data[i].title + '"> OMDB </button>' +
+                '<button id="OmdbButton" class="omdbButton btn btn-primary" data-id="' + data[i].title + '"> POSTER </button>' +
                 ' </div>' +
                 '</div>'
         }
